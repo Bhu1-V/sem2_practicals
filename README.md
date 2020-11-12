@@ -1,1 +1,3 @@
 # sem2_practicals
+
+MADE IT BUG FREE and EFFICIENT AS POSSIBLE.
