@@ -52,10 +52,22 @@ class matrix{
         this->size = rows * columns;
         // this->mat_arr = new t [size];
         for(int i = 0;i < this->size;i++){
-            *(mat_arr + i) = x;
+            *(this->mat_arr + i) = x;
         }
         cout<<"\n Made a Matrix of "<<this->row<<" Rows "<<this->column<<" Columns of value "<<x<<"\n";
     }
+    
+    matrix(const matrix& m2){
+        this->row = m2.row;
+        this->column = m2.column;
+        this->size = m2.row * m2.column;
+        // this->mat_arr = new t [size];
+        for(int i = 0;i < this->size;i++){
+            *(this->mat_arr + i) = *(m2.mat_arr + i);
+        }
+        cout<<"\n Made a Matrix of "<<this->row<<" Rows "<<this->column<<" Columns of value m2 values "<<"\n";
+    }
+
     // ~matrix(){
     //     delete mat_arr;
     // }
@@ -73,7 +85,7 @@ class matrix{
 int main(){
     cout<<"Running";
     matrix <int,2,8> m1(-1);
-    matrix <int,2,8> m2(2);
+    matrix <int,2,8>m2(m1);
     (m1 + m2).print();
     return 0;
 }
