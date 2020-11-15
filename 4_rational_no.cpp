@@ -30,6 +30,10 @@ class Rational_No
     Rational_No operator/ (const Rational_No&);
     bool operator==(const Rational_No&);
     bool operator!=(const Rational_No&);
+    void operator++ ();
+    void operator-- ();
+    void operator++ (int);
+    void operator-- (int);
 };
 Rational_No:: ~Rational_No(){
     // cout<<"Deleted Your Rational No. {"<<this->getP()<<"/"<<this->getQ()<<"}\n"; 
@@ -174,6 +178,23 @@ bool rn::operator==(const rn& r1){
     return (this->getP() == r1.getP()) && (this->getQ() == r1.getQ());
 }
 
+void rn::operator++(){
+    *this = *this + rn();
+}
+
+void rn::operator++(int){
+    *this = *this + rn();
+}
+
+void rn::operator--(){
+    *this = *this - rn();
+}
+
+void rn::operator--(int){
+    *this = *this + rn();
+}
+
+
 
 
 int main(){
@@ -185,6 +206,8 @@ int main(){
     r3 = r1 * r2;
     Print(r3);
     r3 = r1 / r2;
+    Print(r3);
+    --r3;
     Print(r3);
 
     return 0;
