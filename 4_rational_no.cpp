@@ -34,6 +34,8 @@ class Rational_No
     void operator-- ();
     void operator++ (int);
     void operator-- (int);
+    friend ostream& operator<< (ostream& out , const rn& r1);
+    friend istream & operator>> (istream& in , rn& r1);
 };
 Rational_No:: ~Rational_No(){
     // cout<<"Deleted Your Rational No. {"<<this->getP()<<"/"<<this->getQ()<<"}\n"; 
@@ -119,12 +121,14 @@ int rn::_getGCF(){
     int a = this->p;
     int b = this->q;
     int res = 1;
+    if(a == 0 || b == 0) return a+b;
     if(b > a){
         int temp = a;
         a = b;
         b = temp; 
     }
     while(res != 0 && a != 1 && b != 1){
+        cout<<a<<" "<<b<<" "<<res<<nl;
         res = a % b;
         if(res != 0){
             a = b;
@@ -194,21 +198,38 @@ void rn::operator--(int){
     *this = *this + rn();
 }
 
+ostream& operator<< (ostream& out , const rn& r1){
+    out<<r1.getP()<<nl<<"---"<<nl<<r1.getQ()<<nl<<"Value : "<<r1.getValue()<<nl;
+    return out;
+}
+
+istream & operator>> (istream &in , rn &r1){
+    cout<<"Enter Numerator : \n";    
+    in >> r1.p;
+    cout<<"Enter Denominator : \n";
+    in >> r1.q;
+      
+    return in;
+}
+
 
 
 
 int main(){
     // Check Line 3
-    rn  r1(-1,5) , r2(3,5) , r3 = r1 + r2;
-    Print(r3);
+    rn  r1(1,2) , r2(1,2);
+    cin >> r1;
+    cin >> r2;
+    rn r3 = r1 + r2;
+    cout<<r3;
     r3 = r1 - r2;
-    Print(r3);
+    cout<<r3;
     r3 = r1 * r2;
-    Print(r3);
+    cout<<r3;
     r3 = r1 / r2;
-    Print(r3);
+    cout<<r3;
     --r3;
-    Print(r3);
+    cout<<r3;
 
     return 0;
 }
